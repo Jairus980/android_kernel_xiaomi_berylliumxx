@@ -362,13 +362,13 @@ CHECK		= sparse
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-NOSTDINC_FLAGS  =
-CFLAGS_MODULE   =
-AFLAGS_MODULE   =
-LDFLAGS_MODULE  =
-CFLAGS_KERNEL	=
-AFLAGS_KERNEL	=
-LDFLAGS_vmlinux =
+NOSTDINC_FLAGS  = -fasm
+CFLAGS_MODULE   = -fasm
+AFLAGS_MODULE   = -fasm
+LDFLAGS_MODULE  = -fasm --strip-debug
+CFLAGS_KERNEL	= -fasm
+AFLAGS_KERNEL	= -fasm
+LDFLAGS_vmlinux = -fasm
 
 # Use USERINCLUDE when you must reference the UAPI directories only.
 USERINCLUDE    := \
