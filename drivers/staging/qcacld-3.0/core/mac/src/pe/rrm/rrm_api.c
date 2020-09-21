@@ -1194,19 +1194,20 @@ QDF_STATUS rrm_reject_req(tpSirMacRadioMeasureReport *radiomes_report,
 {
 	tpSirMacRadioMeasureReport report;
 
-	if (!*radiomes_report) {
-	/*
-	 * Allocate memory to send reports for
-	 * any subsequent requests.
-	 */
-	*radiomes_report = qdf_mem_malloc(sizeof(*report) *
+	if (*radiomes_report == NULL) {
+			/*
+			 * Allocate memory to send reports for
+			 * any subsequent requests.
+			 */
+			*radiomes_report = qdf_mem_malloc(sizeof(*report) *
 				(rrm_req->num_MeasurementRequest - index));
-	if (!*radiomes_report)
-		return QDF_STATUS_E_NOMEM;
-
-	pe_debug("rrm beacon refused of %d report, index: %d in beacon table",
-		 *num_report, index);
-	}
+			if (NULL == *radiomes_report) {
+				pe_err("Unable to allocate memory during RRM Req processing");
+				return QDF_STATUS_E_NOMEM;
+			}
+			pe_debug("rrm beacon type refused of %d report in beacon table",
+				*num_report);
+		}
 	report = *radiomes_report;
 	report[*num_report].refused = 1;
 	report[*num_report].type = measurement_type;
