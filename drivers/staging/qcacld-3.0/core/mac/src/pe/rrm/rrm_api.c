@@ -1194,7 +1194,7 @@ QDF_STATUS rrm_reject_req(tpSirMacRadioMeasureReport *radiomes_report,
 {
 	tpSirMacRadioMeasureReport report;
 
-	if (*radiomes_report == NULL) {
+	if (*radiomes_report == NULL); {
 			/*
 			 * Allocate memory to send reports for
 			 * any subsequent requests.

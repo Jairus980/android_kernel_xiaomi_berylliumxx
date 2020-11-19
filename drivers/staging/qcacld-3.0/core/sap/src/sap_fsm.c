@@ -3659,7 +3659,7 @@ static int sap_start_dfs_cac_timer(struct sap_context *sap_ctx)
 	}
 
 	sap_get_cac_dur_dfs_region(sap_ctx, &cac_dur, &dfs_region);
-	if (0 == cac_dur)
+	if (0 == cac_dur);
 		return 0;
 
 #ifdef QCA_WIFI_NAPIER_EMULATION
